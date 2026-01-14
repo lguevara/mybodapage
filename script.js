@@ -318,22 +318,31 @@ async function sendToSheet(data, formType, btn) {
         await new Promise(r => setTimeout(r, 1500));
 
         if (formType === 'rsvp') {
-            // Hide form, show success with calendar
+            const isAttending = data.confirmado === 'Si';
             const rsvpForm = document.getElementById('rsvp-form');
-            rsvpForm.innerHTML = `
-                <div class="success-content">
-                    <span class="success-message-text">Gracias por hacer tus arreglos y poder disfrutar con nosotros este momento tan especial.</span>
-                    <i class="fas fa-check-circle" style="font-size: 50px; color: #27ae60; display:block; margin: 20px auto;"></i>
-                    <p>Tu asistencia ha sido confirmada.</p>
-                </div>
-            `;
-            // Move calendar button here if it exists (it behaves as a singleton)
-            const calendarBtn = document.getElementById('btn-add-calendar');
-            if (calendarBtn) {
-                calendarBtn.style.display = 'inline-flex'; // Make visible
-                // Remove it from footer to avoid duplication or errors if we clone
-                if (calendarBtn.parentNode) calendarBtn.parentNode.removeChild(calendarBtn);
-                document.querySelector('.success-content').appendChild(calendarBtn);
+
+            if (isAttending) {
+                rsvpForm.innerHTML = `
+                    <div class="success-content">
+                        <span class="success-message-text">Gracias por hacer tus arreglos y poder disfrutar con nosotros este momento tan especial.</span>
+                        <i class="fas fa-check-circle" style="font-size: 50px; color: #27ae60; display:block; margin: 20px auto;"></i>
+                        <p>Tu asistencia ha sido confirmada.</p>
+                    </div>
+                `;
+                // Move calendar button
+                const calendarBtn = document.getElementById('btn-add-calendar');
+                if (calendarBtn) {
+                    calendarBtn.style.display = 'inline-flex';
+                    if (calendarBtn.parentNode) calendarBtn.parentNode.removeChild(calendarBtn);
+                    document.querySelector('.success-content').appendChild(calendarBtn);
+                }
+            } else {
+                rsvpForm.innerHTML = `
+                    <div class="success-content">
+                        <span class="success-message-text">Lamentamos tu decisión, pero a la vez la comprendemos. Gracias por confirmar.</span>
+                        <i class="fas fa-heart" style="font-size: 50px; color: #e74c3c; display:block; margin: 20px auto;"></i>
+                    </div>
+                `;
             }
         } else {
             document.getElementById('message-form').reset();

@@ -55,7 +55,7 @@ body {
     left: 0;
     width: 100%;
     height: 100vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('recursos/fondo_principal.jpg') no-repeat center center/cover;
+    background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('recursos/fondo_principal.jpg') no-repeat center center/cover;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -99,7 +99,7 @@ body {
     font-family: var(--font-elegant);
     font-size: 2.2rem;
     color: var(--primary-color);
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     line-height: 1;
 }
 

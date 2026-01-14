@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joaquín & Gabriela - ¡Nos Casamos!</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Access Gate / Login Screen -->
+    <div id="access-gate" class="overlay">
+        <div class="login-header-wide">
+            <h1>Bienvenidos a nuestra Boda</h1>
+        </div>
+
+        <div class="login-box">
+            <img src="recursos/logo_jg.png" alt="Logo J&G" class="login-logo">
+            <div class="login-names">Joaquín y Gabriela</div>
+            <p>
+                Por favor, ingresa tu primer Nombre y primer Apellido juntos para acceder a la invitación. <br>
+                (Ejemplo: <strong>JoaquinGuevara</strong>)
+            </p>
+            <input type="text" id="username-input" placeholder="Ingresa tu usuario">
+            <button id="btn-enter" class="btn-primary">Acceder a la invitación</button>
+            <p id="login-error" class="error-msg" style="color: #d33; font-weight: bold; margin-top: 15px;"></p>
+        </div>
+    </div>
+
+    <div id="main-content" class="hidden">
+        <!-- Hero Section -->
+        <header id="hero" class="reveal">
+            <div class="hero-content">
+                <h2>¡Nos casamos!</h2>
+                <h1 class="names">Joaquín & Gabriela</h1>
+                <div class="date-hero">20 . 04 . 2026</div>
+                <p style="margin-top: 20px; letter-spacing: 4px; text-transform: uppercase;">Chiclayo, Perú</p>
+            </div>
+        </header>
+
+        <!-- Countdown Section -->
+        <section id="countdown" class="reveal">
+            <div class="container" style="position: relative;">
+                <!-- Decor -->
+                <img src="recursos/floral_decor.png" class="floral-decor floral-top-left" alt="decor">
+                <img src="recursos/floral_decor.png" class="floral-decor floral-bottom-right" alt="decor">
+
+                <p class="proverbs-text">
+                    "El que encuentra una buena "esposa ó esposo", encuentra un tesoro y recibe la aprobación de
+                    Jehová."<br>
+                    <span style="font-size: 0.9rem;">Proverbios 18:22</span>
+                </p>
+
+                <h2>FALTAN</h2>
+                <div class="timer">
+                    <div class="time-block"><span id="days">00</span><small>Días</small></div>
+                    <div class="time-block"><span id="hours">00</span><small>Hrs</small></div>
+                    <div class="time-block"><span id="minutes">00</span><small>Min</small></div>
+                    <div class="time-block"><span id="seconds">00</span><small>Seg</small></div>
+                </div>
+                <p class="quote-text">
+                    "Lo que empezó con una mirada, hoy se convierte en el capítulo más especial de nuestra historia, te
+                    invitamos a ser parte de ella."
+                </p>
+            </div>
+        </section>
+
+        <!-- Details Section -->
+        <section id="details" class="reveal">
+            <div class="container">
+                <center>
+                    <h2 class="section-title">DETALLES DEL EVENTO</h2>
+                </center>
+                <div class="grid">
+                    <div class="card">
+                        <i class="fas fa-microphone-lines"></i>
+                        <h3>CONSEJO MATRIMONIAL</h3>
+                        <p style="font-weight: 600;">3:00 P.M</p>
+                        <p>Salón del Reino de los Testigos de Jehová</p>
+                        <p style="font-size: 0.85rem; color: #888;">Av. Elvira García 170 Chiclayo</p>
+                        <a href="https://maps.app.goo.gl/2UwUwXVrNdipCovJ7" target="_blank" class="btn-secondary">Cómo
+                            llegar</a>
+                    </div>
+                    <div class="card">
+                        <i class="fas fa-champagne-glasses"></i>
+                        <h3>RECEPCIÓN</h3>
+                        <p style="font-weight: 600;">6:00 P.M</p>
+                        <p>Recepciones Chelito's</p>
+                        <p style="font-size: 0.85rem; color: #888;">Carretera a Pimentel km 5.8</p>
+                        <a href="https://maps.app.goo.gl/B6g5e5vtUbcnjwEUA" target="_blank" class="btn-secondary">Cómo
+                            llegar</a>
+                    </div>
+                </div>
+
+                <div class="dress-code reveal" style="margin-top: 100px; text-align: center;">
+                    <img src="recursos/dress_code_icons.png" alt="Dress Code" class="dress-code-img">
+                    <h3 style="letter-spacing: 3px;">DRESS CODE</h3>
+                    <p style="letter-spacing: 5px; font-weight: 300; font-size: 1.5rem;">FORMAL ELEGANTE</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- RSVP Section -->
+        <section id="rsvp" class="reveal"
+            style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('recursos/fondo_principal.jpg') no-repeat center center/cover; padding: 120px 20px;">
+            <div class="container"
+                style="background: rgba(255,255,255,0.98); padding: 80px 40px; border-radius: 20px; max-width: 700px; margin: 0 auto;">
+                <h2 style="color: var(--primary-color); text-align: center;">CONFIRMA TU ASISTENCIA</h2>
+                <p style="font-size: 1rem; margin: 30px 0; font-style: italic; color: #444;">
+                    “Nos encantará contar con tu presencia en nuestra boda, confirma tu asistencia hasta el 01 de abril;
+                    de lo contrario, consideraremos que no podrán asistir.”
+                </p>
+                <form id="rsvp-form">
+                    <div style="margin-bottom: 40px;">
+                        <p style="margin-bottom: 20px; font-weight: 600; letter-spacing: 2px;">¿NOS ACOMPAÑARÁS?</p>
+                        <div style="display: flex; justify-content: center; gap: 40px;">
+                            <label style="cursor: pointer;"><input type="radio" name="attending" value="Si" required>
+                                SÍ, ASISTIRÉ</label>
+                            <label style="cursor: pointer;"><input type="radio" name="attending" value="No"> NO
+                                PODRÉ</label>
+                        </div>
+                    </div>
+                    <div id="songs-container" class="hidden" style="margin-bottom: 40px;">
+                        <p style="margin-bottom: 5px; font-weight: 600;">¿QUÉ CANCIONES TE GUSTARÍA BAILAR?</p>
+                        <p style="margin-bottom: 20px; font-size: 0.9rem; color: #666; font-style: italic;">(Si lo
+                            deseas, nos das algunas ideas...Haremos lo
+                            posible por complacerte)</p>
+                        <textarea name="songs" placeholder="Canción - Artista"
+                            style="width: 100%; height: 100px; padding: 15px; border-radius: 10px; border: 1px solid #ddd;"></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary">Enviar Confirmación</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Gift Registry -->
+        <section id="registry" class="reveal">
+            <div class="container" style="text-align: center; position: relative;">
+                <!-- Decor -->
+                <img src="recursos/floral_decor.png" class="floral-decor floral-top-left" alt="decor">
+                <img src="recursos/floral_decor.png" class="floral-decor floral-bottom-right" alt="decor">
+
+                <h2>MESA DE REGALOS</h2>
+                <p
+                    style="margin-bottom: 40px; color: #777; max-width: 700px; margin-left: auto; margin-right: auto; font-size: 1.1rem;">
+                    Con tu presencia ya lo tenemos todo, pero si desean hacernos un regalo te dejamos las siguientes
+                    opciones:
+                </p>
+                <div
+                    style="background: #fff; padding: 50px; border-radius: 20px; display: inline-block; text-align: left; box-shadow: 0 10px 40px rgba(0,0,0,0.03); position: relative; z-index: 2;">
+                    <p style="margin-bottom: 20px;"><strong>CTA BCP:</strong> <span id="cta-bcp">xxxxxx</span> <button
+                            class="btn-copy" onclick="copyText('cta-bcp')"
+                            style="margin-left: 10px; cursor: pointer;">Copiar</button></p>
+                    <p style="margin-bottom: 20px;"><strong>CCI:</strong> <span id="cci">yyyyyy</span> <button
+                            class="btn-copy" onclick="copyText('cci')"
+                            style="margin-left: 10px; cursor: pointer;">Copiar</button></p>
+                    <p style="margin-bottom: 20px;"><strong>TITULAR:</strong> Joaquín Alberto Guevara Morales</p>
+                    <p><strong>YAPE O PLIN:</strong> 912269011 (Joaquín Guevara)</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Area -->
+        <section class="faq-section reveal">
+            <div class="container">
+                <center>
+                    <h2 style="color: var(--primary-color); letter-spacing: 5px;">PREGUNTAS FRECUENTES</h2>
+                </center>
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <button class="faq-question">¿Se permiten niños? <i class="fas fa-chevron-down"></i></button>
+                        <div class="faq-answer">
+                            <p>Nos encantan los niños, pero esta será una celebración solo para adultos.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">¿Hay estacionamiento? <i class="fas fa-chevron-down"></i></button>
+                        <div class="faq-answer">
+                            <p>No directamente en el local, pero hay espacios exteriores disponibles bajo su propia
+                                precaución.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">¿A qué hora termina? <i class="fas fa-chevron-down"></i></button>
+                        <div class="faq-answer">
+                            <p>El evento está programado para finalizar a las 12:00 am.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 60px; text-align: center;">
+                    <h2 style="font-size: 1.2rem; color: #aaa; margin-bottom: 30px;">DÉJANOS UN MENSAJE RECUERDO</h2>
+                    <form id="message-form" style="max-width: 600px; margin: 0 auto;">
+                        <textarea name="guest_message" placeholder="Tus mejores deseos aquí..." required
+                            style="width: 100%; height: 120px; padding: 20px; border-radius: 15px; border: 1px solid #ddd; margin-bottom: 20px;"></textarea>
+                        <button type="submit" class="btn-primary" style="width: 100%;">Enviar Mensaje</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery" class="reveal" style="padding: 60px 0; background: #000;">
+            <h2 style="color: #fff; text-align: center; margin-bottom: 40px; letter-spacing: 4px;">NUESTROS MOMENTOS
+            </h2>
+            <div class="carousel-container">
+                <div class="carousel-slide">
+                    <img src="recursos/fondo1.jpg" alt="Foto 1">
+                    <img src="recursos/fondo2.jpg" alt="Foto 2">
+                    <img src="recursos/fondo3.jpg" alt="Foto 3">
+                    <img src="recursos/fondo4.jpg" alt="Foto 4">
+                    <img src="recursos/fondo_principal.jpg" alt="Foto Principal">
+                </div>
+                <button id="prevBtn" class="carousel-btn prev"><i class="fas fa-chevron-left"></i></button>
+                <button id="nextBtn" class="carousel-btn next"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </section>
+
+        <footer style="padding: 100px 20px; background: #fff; text-align: center;">
+            <button id="btn-add-calendar" class="btn-calendar pulsate" style="display: none;">
+                <i class="far fa-calendar-alt"></i> AGENDAR EN MI CALENDARIO
+            </button>
+            <p style="color: #ccc; letter-spacing: 3px; font-size: 0.8rem;">JOAQUÍN & GABRIELA · 2026</p>
+        </footer>
+    </div>
+
+    <!-- Background Music -->
+    <audio id="bg-music" loop>
+        <source src="recursos/osg_S_067.mp3" type="audio/mpeg">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+
+    <!-- Music Control Button -->
+    <button id="music-control" class="music-control hidden" title="Música de fondo">
+        <div class="music-waves">
+            <span></span><span></span><span></span>
+        </div>
+        <i class="fas fa-music" style="position: relative; z-index: 2;"></i>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

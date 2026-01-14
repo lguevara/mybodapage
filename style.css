@@ -1,0 +1,769 @@
+:root {
+    --primary-color: #d4af37;
+    /* Gold */
+    --bg-color: #fdfaf6;
+    --text-color: #2c3e50;
+    --light-text: #7f8c8d;
+    --accent-color: #e5d5b7;
+    --white: #ffffff;
+    --font-elegant: 'Great Vibes', cursive;
+    --font-main: 'Montserrat', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main);
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    line-height: 1.6;
+    overflow-x: hidden;
+    /* Avoid horizontal scroll */
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 20px;
+    /* Reduced vertical padding */
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* --- Scroll Animations --- */
+.reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 1s ease-out;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- Access Gate (Login screen) --- */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('recursos/fondo_principal.jpg') no-repeat center center/cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.login-header-wide {
+    width: 100%;
+    text-align: center;
+    color: white;
+    margin-bottom: 30px;
+    padding: 0 20px;
+}
+
+.login-header-wide h1 {
+    font-size: 3rem;
+    font-family: var(--font-elegant);
+    letter-spacing: 2px;
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.login-box {
+    background: rgba(255, 255, 255, 0.98);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    text-align: center;
+    width: 90%;
+    max-width: 450px;
+}
+
+.login-logo {
+    width: 100px;
+    margin: 0 auto 5px;
+    display: block;
+    mix-blend-mode: multiply;
+}
+
+.login-names {
+    font-family: var(--font-elegant);
+    font-size: 2.2rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    line-height: 1;
+}
+
+.login-box p {
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.login-box input {
+    width: 100%;
+    padding: 14px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    outline: none;
+    background-color: #fcfcfc;
+    transition: all 0.3s;
+}
+
+.login-box input:focus {
+    border-color: var(--primary-color);
+    background-color: #fff;
+}
+
+/* --- Hero Section --- */
+#hero {
+    height: 100vh;
+    width: 100vw;
+    background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('recursos/fondo_principal.jpg') no-repeat center center/cover;
+    background-attachment: fixed;
+    /* Parallax effect */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.hero-content {
+    text-align: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hero-content h2 {
+    font-size: 1.2rem;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    font-weight: 300;
+}
+
+.names {
+    font-family: var(--font-elegant);
+    font-size: 6rem;
+    color: var(--primary-color);
+    margin: 20px 0;
+    line-height: 1.1;
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.date-hero {
+    font-size: 1.8rem;
+    letter-spacing: 4px;
+    padding: 10px 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.4);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    margin-top: 20px;
+}
+
+/* --- Countdown --- */
+#countdown {
+    background: var(--white);
+    padding: 80px 20px 60px;
+    position: relative;
+    z-index: 10;
+    overflow: hidden;
+}
+
+.floral-decor {
+    position: absolute;
+    width: 350px;
+    /* Much bigger as requested */
+    max-width: 50%;
+    opacity: 0.9;
+    pointer-events: none;
+    z-index: 0;
+    mix-blend-mode: multiply;
+    /* Fixes white background issues */
+    display: block;
+    /* Clean up the image background to ensure it is pure white */
+    filter: contrast(1.1) brightness(1.05);
+}
+
+.floral-top-left {
+    top: -50px;
+    left: -50px;
+    transform: rotate(0deg);
+}
+
+.floral-bottom-right {
+    bottom: -50px;
+    right: -50px;
+    transform: rotate(180deg);
+}
+
+#countdown h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    font-family: var(--font-main);
+    /* Switch to clearer font */
+    font-weight: 300;
+    letter-spacing: 12px;
+    color: var(--text-color);
+    margin: 40px 0 40px;
+    text-shadow: none;
+    text-transform: uppercase;
+}
+
+.timer {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.time-block {
+    text-align: center;
+}
+
+.time-block span {
+    font-size: 3.5rem;
+    font-weight: 300;
+    display: block;
+    color: var(--text-color);
+    line-height: 1;
+}
+
+.time-block small {
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+    color: var(--light-text);
+}
+
+.quote-text {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+    font-style: italic;
+    color: #666;
+    font-size: 1.2rem;
+    padding: 0 20px;
+    position: relative;
+    z-index: 2;
+}
+
+.proverbs-text {
+    text-align: center;
+    color: var(--primary-color);
+    font-weight: 600;
+    /* Bolder */
+    letter-spacing: 0.5px;
+    margin-bottom: 40px;
+    font-size: 1.4rem;
+    /* Larger */
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.85);
+    /* Readability card */
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    display: inline-block;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+/* --- Event Details (Background Image 1) --- */
+/* --- Event Details (Background Image 1) --- */
+#details {
+    padding: 100px 0;
+    background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('recursos/fondo1.jpg') no-repeat center center/cover;
+    background-attachment: fixed;
+}
+
+.section-title {
+    font-size: 1.5rem;
+    margin-bottom: 50px;
+    color: var(--text-color);
+    letter-spacing: 5px;
+    font-weight: 600;
+    border-bottom: 2px solid var(--primary-color);
+    display: inline-block;
+    padding-bottom: 10px;
+}
+
+.dress-code-img {
+    max-width: 150px;
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.1));
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.card {
+    background: white;
+    padding: 50px 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    /* Softer shadow */
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card i {
+    font-size: 40px;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.card h3 {
+    text-transform: uppercase;
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+}
+
+/* --- RSVP (Main Background) --- */
+#rsvp {
+    /* Background handled in HTML or moved here if strict */
+    background-attachment: fixed !important;
+}
+
+/* --- Registry (White) --- */
+#registry {
+    background: var(--white);
+    padding: 80px 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* --- FAQ (Background Image 2) --- */
+.faq-section {
+    background: linear-gradient(rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.92)), url('recursos/fondo2.jpg') no-repeat center center/cover;
+    background-attachment: fixed;
+    padding: 60px 0;
+}
+
+.faq-container {
+    max-width: 800px;
+    margin: 40px auto;
+}
+
+.faq-item {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 10px;
+}
+
+.faq-question {
+    width: 100%;
+    padding: 20px;
+    background: none;
+    border: none;
+    text-align: left;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--text-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    padding: 0 20px;
+    color: #555;
+    line-height: 1.6;
+}
+
+.faq-item.active .faq-answer {
+    max-height: 200px;
+    padding-bottom: 20px;
+}
+
+.faq-item.active .faq-question i {
+    transform: rotate(180deg);
+    color: var(--primary-color);
+}
+
+/* --- Carousel --- */
+.carousel-container {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    height: 500px;
+}
+
+.carousel-progress-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 5px;
+    background: var(--primary-color);
+    width: 0%;
+    z-index: 20;
+}
+
+.carousel-progress-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 5px;
+    background: var(--primary-color);
+    width: 0%;
+    z-index: 20;
+}
+
+.carousel-slide {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    height: 100%;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    font-size: 2rem;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.carousel-btn:hover {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.prev {
+    left: 20px;
+}
+
+.next {
+    right: 20px;
+}
+
+/* --- Buttons --- */
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 14px 35px;
+    border: none;
+    border-radius: 50px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 0.9rem;
+}
+
+.btn-primary:hover {
+    background-color: #c19b2e;
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+}
+
+.btn-secondary {
+    display: inline-block;
+    padding: 10px 25px;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    border-radius: 50px;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.8rem;
+    margin-top: 15px;
+}
+
+.btn-calendar {
+    background: #2c3e50;
+    color: var(--white);
+    padding: 18px 40px;
+    border: none;
+    border-radius: 50px;
+    font-size: 0.95rem;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: transform 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 30px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn-calendar:hover {
+    transform: scale(1.05);
+    background: #1a252f;
+}
+
+.success-content {
+    text-align: center;
+    padding: 20px;
+    animation: fadeIn 1s;
+}
+
+.success-message-text {
+    font-size: 1.5rem;
+    /* Larger */
+    color: var(--primary-color);
+    font-family: var(--font-main);
+    /* Clearer font (Montserrat) */
+    font-weight: 400;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    display: block;
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 768px) {
+    #hero {
+        background-attachment: scroll;
+        height: 100vh;
+        min-height: 600px;
+    }
+
+    .hero-content h2 {
+        font-size: 1rem;
+        letter-spacing: 3px;
+    }
+
+    .names {
+        font-size: 3rem;
+        margin: 10px 0;
+    }
+
+    .date-hero {
+        font-size: 1.2rem;
+    }
+
+    .overlay {
+        background-attachment: scroll;
+    }
+
+    .login-header-wide h1 {
+        font-size: 1.8rem;
+    }
+
+    .login-names {
+        font-size: 1.5rem;
+    }
+
+    .login-box {
+        padding: 30px 20px;
+        width: 95%;
+    }
+
+    #countdown h2 {
+        font-size: 1.8rem;
+        letter-spacing: 5px;
+    }
+
+    .timer {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .time-block {
+        min-width: 70px;
+    }
+
+    .time-block span {
+        font-size: 2.2rem;
+    }
+
+    .proverbs-text {
+        font-size: 1.1rem;
+        padding: 20px;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Stack cards */
+    .card {
+        padding: 40px 20px;
+    }
+
+    .carousel-container {
+        height: 250px;
+    }
+
+    .container {
+        padding: 40px 20px;
+    }
+
+    #details,
+    .faq-section {
+        background-attachment: scroll;
+        background-size: cover;
+    }
+
+    #countdown,
+    #registry {
+        background-image: none;
+    }
+
+    .floral-decor {
+        width: 180px;
+        /* Adjusted visibility on mobile */
+        opacity: 0.6;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.pulsate {
+    animation: pulsate 2s infinite;
+}
+
+@keyframes pulsate {
+    0% {
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    }
+}
+
+/* --- Music Control --- */
+.music-control {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.music-control:hover {
+    transform: scale(1.1);
+    background: #c19b2e;
+}
+
+.music-control.playing .music-waves span {
+    animation: wave 1s infinite alternate;
+}
+
+.music-control.hidden {
+    display: none !important;
+}
+
+.music-waves {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+.music-waves span {
+    position: absolute;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    opacity: 0;
+}
+
+.music-waves span:nth-child(1) {
+    width: 100%;
+    height: 100%;
+    animation-delay: 0s;
+}
+
+.music-waves span:nth-child(2) {
+    width: 140%;
+    height: 140%;
+    animation-delay: 0.3s;
+}
+
+.music-waves span:nth-child(3) {
+    width: 180%;
+    height: 180%;
+    animation-delay: 0.6s;
+}
+
+@keyframes wave {
+    0% {
+        transform: scale(0.8);
+        opacity: 0.5;
+        border-color: rgba(255, 255, 255, 0.8);
+    }
+
+    100% {
+        transform: scale(1.2);
+        opacity: 0;
+        border-color: rgba(255, 255, 255, 0);
+    }
+}
+
+@media (max-width: 768px) {
+    .music-control {
+        bottom: 20px;
+        left: 20px;
+        width: 45px;
+        height: 45px;
+    }
+}

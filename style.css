@@ -55,7 +55,8 @@ body {
     left: 0;
     width: 100%;
     height: 100vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('recursos/fondo_principal.jpg') no-repeat center center/cover;
+    background: linear-gradient(rgba(253, 250, 246, 0.4), rgba(253, 250, 246, 0.4)), url('recursos/fondo_dibujo.png') no-repeat center center/cover;
+    background-color: #fdfaf6;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -97,7 +98,8 @@ body {
 
 .login-names {
     font-family: var(--font-elegant);
-    font-size: 2.2rem;
+    font-size: 3.5rem;
+    /* Increased to match main better */
     color: var(--primary-color);
     margin-bottom: 25px;
     line-height: 1;
@@ -130,7 +132,8 @@ body {
 #hero {
     height: 100vh;
     width: 100vw;
-    background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('recursos/fondo_principal.jpg') no-repeat center center/cover;
+    background: linear-gradient(rgba(253, 250, 246, 0.4), rgba(253, 250, 246, 0.4)), url('recursos/fondo_dibujo.png') no-repeat center 20%/cover;
+    background-color: #fdfaf6;
     background-attachment: fixed;
     /* Parallax effect */
     display: flex;
@@ -145,30 +148,42 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    box-sizing: border-box;
 }
 
 .hero-content h2 {
-    font-size: 1.2rem;
-    letter-spacing: 6px;
+    font-size: 1.8rem;
+    /* Increased to stand out */
+    letter-spacing: 4px;
     text-transform: uppercase;
-    font-weight: 300;
+    font-weight: 600;
+    color: #444;
+    /* Darker to contrast against clouds */
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
 }
 
 .names {
     font-family: var(--font-elegant);
-    font-size: 6rem;
+    font-size: 5.5rem;
     color: var(--primary-color);
-    margin: 20px 0;
-    line-height: 1.1;
-    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    margin: 10px 0;
+    line-height: 1;
+    text-shadow: 2px 2px 15px rgba(255, 255, 255, 0.5);
 }
 
 .date-hero {
-    font-size: 1.8rem;
-    letter-spacing: 4px;
-    padding: 10px 30px;
-    border-top: 1px solid rgba(255, 255, 255, 0.4);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    font-size: 2.2rem;
+    /* Larger */
+    letter-spacing: 6px;
+    font-weight: 600;
+    color: var(--text-color);
+    padding: 15px 40px;
+    border-top: 2px solid var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+    background: rgba(255, 255, 255, 0.2);
+    /* Glass effect for contrast */
+    backdrop-filter: blur(2px);
+    border-radius: 5px;
     margin-top: 20px;
 }
 
@@ -340,8 +355,14 @@ body {
 
 /* --- RSVP (Main Background) --- */
 #rsvp {
-    /* Background handled in HTML or moved here if strict */
-    background-attachment: fixed !important;
+    background: linear-gradient(rgba(253, 250, 246, 0.45), rgba(253, 250, 246, 0.45)), #fdfaf6 url('recursos/fondo_dibujo.png') no-repeat center center/cover;
+    padding: 120px 20px;
+    background-attachment: fixed;
+}
+
+#rsvp .container {
+    position: relative;
+    z-index: 1;
 }
 
 /* --- Registry (White) --- */
@@ -552,13 +573,14 @@ body {
 @media (max-width: 768px) {
     #hero {
         background-attachment: scroll;
+        background-position: center 20%;
+        background-size: cover !important;
         height: 100vh;
-        min-height: 600px;
+        min-height: 560px;
     }
 
-    .hero-content h2 {
-        font-size: 1rem;
-        letter-spacing: 3px;
+    .hero-content {
+        padding: 40px 0 !important;
     }
 
     .names {
@@ -572,6 +594,14 @@ body {
 
     .overlay {
         background-attachment: scroll;
+        background-position: center bottom;
+        background-size: cover !important;
+    }
+
+    #rsvp {
+        background-attachment: scroll;
+        background-position: center bottom;
+        background-size: cover !important;
     }
 
     .login-header-wide h1 {
@@ -579,7 +609,7 @@ body {
     }
 
     .login-names {
-        font-size: 1.5rem;
+        font-size: 2.2rem;
     }
 
     .login-box {

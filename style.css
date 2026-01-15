@@ -55,7 +55,7 @@ body {
     left: 0;
     width: 100%;
     height: 100vh;
-    background: linear-gradient(rgba(253, 250, 246, 0.4), rgba(253, 250, 246, 0.4)), url('recursos/fondo_dibujo.png') no-repeat center center/cover;
+    background: url('recursos/fondo_dibujo.png') no-repeat center center/cover;
     background-color: #fdfaf6;
     display: flex;
     flex-direction: column;
@@ -67,9 +67,11 @@ body {
 .login-header-wide {
     width: 100%;
     text-align: center;
-    color: white;
+    color: #2d4a22;
+    /* Dark Forest Green matching the grass/suit */
     margin-bottom: 30px;
     padding: 0 20px;
+    text-shadow: 0 2px 4px rgba(255, 255, 255, 0.4);
 }
 
 .login-header-wide h1 {
@@ -132,7 +134,7 @@ body {
 #hero {
     height: 100vh;
     width: 100vw;
-    background: linear-gradient(rgba(253, 250, 246, 0.4), rgba(253, 250, 246, 0.4)), url('recursos/fondo_dibujo.png') no-repeat center 20%/cover;
+    background: url('recursos/fondo_dibujo.png') no-repeat center 20%/cover;
     background-color: #fdfaf6;
     background-attachment: fixed;
     /* Parallax effect */
@@ -355,7 +357,7 @@ body {
 
 /* --- RSVP (Main Background) --- */
 #rsvp {
-    background: linear-gradient(rgba(253, 250, 246, 0.45), rgba(253, 250, 246, 0.45)), #fdfaf6 url('recursos/fondo_dibujo.png') no-repeat center center/cover;
+    background: #fdfaf6 url('recursos/fondo_dibujo.png') no-repeat center center/cover;
     padding: 120px 20px;
     background-attachment: fixed;
 }

@@ -222,14 +222,14 @@ body {
 }
 
 .floral-top-left {
-    top: -50px;
-    left: -50px;
+    top: -20px;
+    left: -20px;
     transform: rotate(0deg);
 }
 
 .floral-bottom-right {
-    bottom: -50px;
-    right: -50px;
+    bottom: -20px;
+    right: -20px;
     transform: rotate(180deg);
 }
 
@@ -600,6 +600,8 @@ body {
 
     .date-hero {
         font-size: 1.2rem;
+        margin-top: 5px;
+        /* Moved up about 3mm/15px */
     }
 
     .overlay {
@@ -680,8 +682,7 @@ body {
         background-size: cover;
     }
 
-    #countdown,
-    #registry {
+    #countdown {
         background-image: none;
     }
 

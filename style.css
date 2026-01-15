@@ -365,9 +365,8 @@ body {
 
 /* --- RSVP (Main Background) --- */
 #rsvp {
-    background: #fdfaf6 url('recursos/fondo_dibujo.png') no-repeat center center/cover;
+    background: var(--white);
     padding: 120px 20px;
-    background-attachment: fixed;
 }
 
 #rsvp .container {
@@ -375,9 +374,10 @@ body {
     z-index: 1;
 }
 
-/* --- Registry (White) --- */
+/* --- Registry (Fondo 2) --- */
 #registry {
-    background: var(--white);
+    background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('recursos/fondo2.jpg') no-repeat center center/cover;
+    background-attachment: fixed;
     padding: 80px 20px;
     position: relative;
     overflow: hidden;
@@ -385,8 +385,7 @@ body {
 
 /* --- FAQ (Background Image 2) --- */
 .faq-section {
-    background: linear-gradient(rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.92)), url('recursos/fondo2.jpg') no-repeat center center/cover;
-    background-attachment: fixed;
+    background: var(--white);
     padding: 60px 0;
 }
 

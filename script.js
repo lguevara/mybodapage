@@ -102,6 +102,7 @@ if (savedUser) {
     showMainContent(JSON.parse(savedUser));
 }
 
+
 // 2. COUNTDOWN TIMER
 function startCountdown() {
     const timer = setInterval(() => {
@@ -388,7 +389,23 @@ function startMusic() {
         }).catch(err => {
             console.log('Autoplay prevented by browser, waiting for user interaction');
             isMusicPlaying = false;
-            // Button already shows Play icon, user can click it
+            // Add interaction listener only after login and if autoplay failed
+            const playOnInteraction = () => {
+                if (isMusicPlaying === false && bgMusic.paused) {
+                    bgMusic.play().then(() => {
+                        isMusicPlaying = true;
+                        musicBtn.classList.add('playing');
+                        musicBtn.innerHTML = `
+                            <div class="music-waves">
+                                <span></span><span></span><span></span>
+                            </div>
+                            <i class="fas fa-pause" style="position: relative; z-index: 2;"></i>
+                        `;
+                    }).catch(e => { });
+                }
+            };
+            window.addEventListener('click', playOnInteraction, { once: true });
+            window.addEventListener('touchstart', playOnInteraction, { once: true });
         });
     }
 }

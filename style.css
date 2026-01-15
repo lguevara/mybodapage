@@ -589,7 +589,8 @@ body {
     }
 
     .hero-content {
-        padding: 40px 0 !important;
+        padding: 40px 0 100px !important;
+        /* Increased bottom padding to move content up */
     }
 
     .names {
@@ -601,7 +602,8 @@ body {
     .date-hero {
         font-size: 1.2rem;
         margin-top: 5px;
-        /* Moved up about 3mm/15px */
+        margin-bottom: 20px;
+        /* Added margin to push it further up */
     }
 
     .overlay {
@@ -736,7 +738,8 @@ body {
     border: none;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
     cursor: pointer;
-    z-index: 1000;
+    z-index: 10001;
+    /* Higher than overlay */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -801,15 +804,16 @@ body {
     }
 
     100% {
-        transform: scale(1.2);
+        transform: scale(1.5);
         opacity: 0;
-        border-color: rgba(255, 255, 255, 0);
+        border-color: rgba(255, 255, 255, 0.2);
     }
 }
 
+/* Extra Mobile Adjustments */
 @media (max-width: 768px) {
     .music-control {
-        bottom: 20px;
+        bottom: 50px;
         left: 20px;
         width: 45px;
         height: 45px;

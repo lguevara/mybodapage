@@ -100,46 +100,28 @@
                     </div>
                 </div>
 
-                <div class="dress-code reveal" style="margin-top: 100px; text-align: center;">
+        </section>
+
+        <!-- Dress Code Section -->
+        <section id="dress-code" class="reveal" style="padding: 80px 20px; background-color: #fff;">
+            <div class="container">
+                <div class="dress-code" style="text-align: center;">
                     <img src="recursos/dress_code_icons.png" alt="Dress Code" class="dress-code-img">
-                    <h3 style="letter-spacing: 3px;">DRESS CODE</h3>
-                    <p style="letter-spacing: 5px; font-weight: 300; font-size: 1.5rem;">FORMAL ELEGANTE</p>
+                    <h3 style="letter-spacing: 3px; color: var(--text-color);">DRESS CODE</h3>
+                    <p style="letter-spacing: 5px; font-weight: 300; font-size: 1.5rem; color: var(--primary-color);">
+                        FORMAL ELEGANTE</p>
                 </div>
             </div>
         </section>
 
-        <!-- RSVP Section -->
-        <section id="rsvp" class="reveal" style="position: relative; overflow: hidden;">
-            <!-- Decor -->
-            <img src="recursos/floral_decor.png" class="floral-decor floral-top-left" alt="decor">
-            <img src="recursos/floral_decor.png" class="floral-decor floral-bottom-right" alt="decor">
-            <div class="container"
-                style="background: rgba(255,255,255,0.98); padding: 80px 40px; border-radius: 20px; max-width: 700px; margin: 0 auto; position: relative; z-index: 1;">
-                <h2 style="color: var(--primary-color); text-align: center;">CONFIRMA TU ASISTENCIA</h2>
-                <p style="font-size: 1rem; margin: 30px 0; font-style: italic; color: #444;">
-                    “Nos encantará contar con tu presencia en nuestra boda, confirma tu asistencia hasta el 01 de abril;
-                    de lo contrario, consideraremos que no podrán asistir.”
-                </p>
-                <form id="rsvp-form">
-                    <div style="margin-bottom: 40px;">
-                        <p style="margin-bottom: 20px; font-weight: 600; letter-spacing: 2px;">¿NOS ACOMPAÑARÁS?</p>
-                        <div style="display: flex; justify-content: center; gap: 40px;">
-                            <label style="cursor: pointer;"><input type="radio" name="attending" value="Si" required>
-                                SÍ, ASISTIRÉ</label>
-                            <label style="cursor: pointer;"><input type="radio" name="attending" value="No"> NO
-                                PODRÉ</label>
-                        </div>
-                    </div>
-                    <div id="songs-container" class="hidden" style="margin-bottom: 40px;">
-                        <p style="margin-bottom: 5px; font-weight: 600;">¿QUÉ CANCIONES TE GUSTARÍA BAILAR?</p>
-                        <p style="margin-bottom: 20px; font-size: 0.9rem; color: #666; font-style: italic;">(Si lo
-                            deseas, nos das algunas ideas...Haremos lo
-                            posible por complacerte)</p>
-                        <textarea name="songs" placeholder="Canción - Artista"
-                            style="width: 100%; height: 100px; padding: 15px; border-radius: 10px; border: 1px solid #ddd;"></textarea>
-                    </div>
-                    <button type="submit" class="btn-primary">Enviar Confirmación</button>
-                </form>
+        <!-- Gallery Snippet Section -->
+        <section id="photo-showcase" class="reveal" style="padding: 20px 0; background-color: #fff;">
+            <div class="container-fluid" style="padding: 0 15px;">
+                <div class="photo-grid">
+                    <div class="photo-item"><img src="recursos/fondo1.jpg" alt="Boda 1"></div>
+                    <div class="photo-item"><img src="recursos/fondo2.jpg" alt="Boda 2"></div>
+                    <div class="photo-item"><img src="recursos/fondo3.jpg" alt="Boda 3"></div>
+                </div>
             </div>
         </section>
 
@@ -163,6 +145,44 @@
                     <p style="margin-bottom: 20px;"><strong>TITULAR:</strong> Joaquín Alberto Guevara Morales</p>
                     <p><strong>YAPE O PLIN:</strong> 912269011 (Joaquín Guevara)</p>
                 </div>
+            </div>
+        </section>
+
+        <!-- RSVP Section -->
+        <section id="rsvp" class="reveal" style="position: relative; overflow: hidden;">
+            <!-- Decor -->
+            <img src="recursos/floral_decor.png" class="floral-decor floral-top-left" alt="decor">
+            <img src="recursos/floral_decor.png" class="floral-decor floral-bottom-right" alt="decor">
+            <div class="container"
+                style="background: rgba(255,255,255,0.98); padding: 80px 40px; border-radius: 20px; max-width: 700px; margin: 0 auto; position: relative; z-index: 1;">
+                <h2 style="color: var(--primary-color); text-align: center;">CONFIRMA TU ASISTENCIA</h2>
+                <p style="font-size: 1rem; margin: 30px 0; font-style: italic; color: #444;">
+                    “Nos encantará contar con tu presencia en nuestra boda, <strong>confirma tu asistencia hasta el 01
+                        de marzo</strong>;
+                    de lo contrario, consideraremos que no podrán asistir.”
+                </p>
+                <form id="rsvp-form">
+                    <div style="margin-bottom: 40px;">
+                        <p style="margin-bottom: 20px; font-weight: 600; letter-spacing: 2px;">¿NOS ACOMPAÑARÁS?</p>
+                        <div style="display: flex; justify-content: center; gap: 40px;">
+                            <label style="cursor: pointer;"><input type="radio" name="attending" value="Si" required>
+                                SÍ, ASISTIRÉ</label>
+                            <label style="cursor: pointer;"><input type="radio" name="attending" value="No"> NO
+                                PODRÉ</label>
+                        </div>
+                    </div>
+                    <div id="songs-container" class="hidden" style="margin-bottom: 40px;">
+                        <p style="margin-bottom: 5px; font-weight: 600;">¿QUÉ CANCIONES TE GUSTARÍA BAILAR?</p>
+                        <p style="margin-bottom: 20px; font-size: 0.9rem; color: #666; font-style: italic;">(Si lo
+                            deseas, nos das algunas ideas...Haremos lo
+                            posible por complacerte)</p>
+                        <textarea name="songs" placeholder="Canción - Artista"
+                            style="width: 100%; height: 100px; padding: 15px; border-radius: 10px; border: 1px solid #ddd;"></textarea>
+                    </div>
+                    <div style="text-align: center;">
+                        <button type="submit" class="btn-primary">Enviar Confirmación</button>
+                    </div>
+                </form>
             </div>
         </section>
 
@@ -208,20 +228,6 @@
             </div>
         </section>
 
-        <section id="gallery" class="reveal" style="padding: 60px 0; background: #000;">
-            <h2 style="color: #fff; text-align: center; margin-bottom: 40px; letter-spacing: 4px;">NUESTROS MOMENTOS
-            </h2>
-            <div class="carousel-container">
-                <div class="carousel-slide">
-                    <img src="recursos/fondo1.jpg" alt="Foto 1">
-                    <img src="recursos/fondo2.jpg" alt="Foto 2">
-                    <img src="recursos/fondo3.jpg" alt="Foto 3">
-                    <img src="recursos/fondo4.jpg" alt="Foto 4">
-                </div>
-                <button id="prevBtn" class="carousel-btn prev"><i class="fas fa-chevron-left"></i></button>
-                <button id="nextBtn" class="carousel-btn next"><i class="fas fa-chevron-right"></i></button>
-            </div>
-        </section>
 
         <footer style="padding: 100px 20px; background: #fff; text-align: center;">
             <button id="btn-add-calendar" class="btn-calendar pulsate" style="display: none;">

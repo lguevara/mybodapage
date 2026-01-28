@@ -55,7 +55,7 @@ body {
     left: 0;
     width: 100%;
     height: 100vh;
-    background: url('recursos/fondo_dibujo.png') no-repeat center center/cover;
+    background: url('recursos/fondo.jpg') no-repeat center center/cover;
     background-color: #fdfaf6;
     display: flex;
     flex-direction: column;
@@ -141,14 +141,28 @@ body {
 #hero {
     height: 100vh;
     width: 100vw;
-    background: url('recursos/fondo_dibujo.png') no-repeat center 20%/cover;
     background-color: #fdfaf6;
-    background-attachment: fixed;
-    /* Parallax effect */
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     color: white;
+    overflow: hidden;
+}
+
+#hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('recursos/fondo.jpg') no-repeat center 20%/cover;
+    background-attachment: fixed;
+    /* Parallax effect */
+    opacity: 0.6;
+    /* Soft opacity for background */
+    z-index: 0;
 }
 
 .hero-content {
@@ -158,6 +172,8 @@ body {
     flex-direction: column;
     align-items: center;
     box-sizing: border-box;
+    position: relative;
+    z-index: 1;
 }
 
 .hero-content h2 {
@@ -306,7 +322,7 @@ body {
 /* --- Event Details (Background Image 1) --- */
 #details {
     padding: 100px 0;
-    background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('recursos/fondo1.jpg') no-repeat center center/cover;
+    background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('recursos/fondo_detalles.jpg') no-repeat center center/cover;
     background-attachment: fixed;
 }
 
@@ -580,10 +596,13 @@ body {
 
 /* --- Mobile Responsiveness --- */
 @media (max-width: 768px) {
-    #hero {
+    #hero::before {
         background-attachment: scroll;
-        background-position: center 20%;
+        background-position: 25% center;
         background-size: cover !important;
+    }
+
+    #hero {
         height: 100vh;
         min-height: 560px;
     }
@@ -608,7 +627,7 @@ body {
 
     .overlay {
         background-attachment: scroll;
-        background-position: center bottom;
+        background-position: 25% center;
         background-size: cover !important;
     }
 
@@ -692,6 +711,15 @@ body {
         width: 180px;
         /* Adjusted visibility on mobile */
         opacity: 0.6;
+    }
+
+    .photo-grid {
+        flex-direction: column;
+        padding: 0 10px;
+    }
+
+    .photo-item {
+        height: 350px;
     }
 }
 
@@ -808,6 +836,35 @@ body {
         opacity: 0;
         border-color: rgba(255, 255, 255, 0.2);
     }
+}
+
+/* --- Photo Grid Section --- */
+.photo-grid {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.photo-item {
+    flex: 1;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    height: 400px;
+}
+
+.photo-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.photo-item:hover img {
+    transform: scale(1.05);
 }
 
 /* Extra Mobile Adjustments */

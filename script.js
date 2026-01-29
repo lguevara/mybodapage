@@ -105,8 +105,12 @@ function showMainContent(userData) {
         if (userData.Invitados) {
             const lista = userData.Invitados.split(/[,\n]/).map(name => name.trim()).filter(name => name !== "");
             listaInvitadosDiv.innerHTML = lista.join('<br>');
+        } else {
+            listaInvitadosDiv.innerHTML = ""; // Clear if no names
         }
     } else {
+        // En caso de que no haya datos de pases, nos aseguramos de que el contenedor esté oculto
+        passesContainer.classList.add('hidden');
         console.warn("No se encontraron 'Pases' en los datos del usuario.");
     }
 

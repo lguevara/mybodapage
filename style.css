@@ -493,6 +493,15 @@ body {
     color: white;
 }
 
+.info-box-light {
+    background: rgba(0, 0, 0, 0.02);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 0;
+    padding: 40px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
 /* --- FAQ (Background Image 2) --- */
 .faq-section {
     background: var(--white);
@@ -619,43 +628,45 @@ body {
 
 /* --- Buttons --- */
 .btn-primary {
-    background-color: transparent;
-    color: white;
+    background-color: white;
+    color: black;
     padding: 16px 45px;
     border: 1px solid white;
-    border-radius: 0;
-    /* Minimalist sharp corners or very subtle */
+    border-radius: 50px;
     text-transform: uppercase;
     letter-spacing: 3px;
-    font-weight: 400;
+    font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s;
+    transition: all 0.3s ease;
     font-size: 0.85rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .btn-primary:hover {
-    background-color: white;
-    color: black;
-    box-shadow: none;
+    background-color: rgba(255, 255, 255, 0.9);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
 .btn-dark {
-    background-color: transparent;
-    color: var(--text-color);
+    background-color: var(--text-color);
+    color: white;
     border: 1px solid var(--text-color);
     padding: 16px 45px;
-    border-radius: 0;
+    border-radius: 50px;
     text-transform: uppercase;
     letter-spacing: 3px;
-    font-weight: 400;
+    font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s;
+    transition: all 0.3s ease;
     font-size: 0.85rem;
 }
 
 .btn-dark:hover {
-    background-color: var(--text-color);
-    color: white;
+    background-color: #333;
+    border-color: #333;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .btn-secondary {
@@ -771,13 +782,15 @@ body {
 
     .overlay::before {
         background-attachment: scroll;
-        background-position: center center;
+        background-position: 25% center;
+        background-size: cover !important;
     }
 
     #rsvp {
         background-attachment: scroll;
         background-position: center bottom;
         background-size: cover !important;
+        opacity: 1 !important;
     }
 
     .login-header-wide {

@@ -463,9 +463,7 @@ body {
 
 /* --- Registry Section --- */
 #registry {
-    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('recursos/fondo2.jpg') no-repeat center center/cover;
-    background-attachment: fixed;
-    filter: grayscale(80%);
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('recursos/fondo_regalos.jpg') no-repeat center center/cover;
     padding: 100px 20px;
     color: white;
 }

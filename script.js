@@ -4,7 +4,7 @@
  */
 
 // CONFIGURATION
-const APP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyfE4LnlsvMQH3QDOUm1g_7ZmNx9q1DYR7DRZgemJGCBJq0ILyn5bMnQelHAbkz_R53/exec'; // Updated by user later
+const APP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyLR1z5TJe_LN1y3VlL8l3tDRPSOs7Et1Jq2gxf7f53-fHLilKWVi7CjAp_s23mjpDU/exec'; // Updated by user later
 const WEDDING_DATE = new Date('April 20, 2026 15:00:00').getTime();
 
 // Elements
@@ -33,7 +33,7 @@ async function validateUser() {
     // Loading State
     btnEnter.disabled = true;
     usernameInput.disabled = true;
-    btnEnter.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Validando...';
+    btnEnter.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verificando...';
     loginError.innerText = '';
 
     try {
@@ -69,28 +69,47 @@ async function validateUser() {
             localStorage.setItem('wedding_user', JSON.stringify(data));
             showMainContent(data);
         } else {
-            loginError.innerText = data.message || 'Usuario no encontrado.';
+            loginError.innerText = data.message || 'Usuario no encontrado. Asegúrate de escribir tu nombre y apellido juntos.';
         }
     } catch (err) {
         console.error('Fetch error:', err);
         if (err.name === 'AbortError') {
             loginError.innerText = 'La conexión tardó demasiado. Inténtalo de nuevo.';
         } else if (err.message === 'Failed to fetch') {
-            loginError.innerText = 'No se pudo conectar con el servidor. Revisa tu conexión o vuelve al Walkthrough para revisar el Apps Script.';
+            loginError.innerText = 'No se pudo conectar con el servidor. Revisa tu conexión de internet.';
         } else {
             loginError.innerText = `Error: ${err.message}`;
         }
     } finally {
         btnEnter.disabled = false;
         usernameInput.disabled = false;
-        btnEnter.innerText = 'Ingresar';
+        btnEnter.innerText = 'Acceder a la invitación';
     }
 }
 
 function showMainContent(userData) {
     accessGate.classList.add('hidden');
     mainContent.classList.remove('hidden');
-    // Personalize welcome if needed
+
+    // Display dynamic passes information
+    const passesContainer = document.getElementById('passes-container');
+    const numPasesSpan = document.getElementById('num-pases');
+    const listaInvitadosDiv = document.getElementById('lista-invitados');
+
+    console.log("Datos recibidos del servidor:", userData);
+
+    if (userData.Pases !== undefined && userData.Pases !== null) {
+        passesContainer.classList.remove('hidden');
+        numPasesSpan.innerText = `(${userData.Pases})`;
+
+        if (userData.Invitados) {
+            const lista = userData.Invitados.split(/[,\n]/).map(name => name.trim()).filter(name => name !== "");
+            listaInvitadosDiv.innerHTML = lista.join('<br>');
+        }
+    } else {
+        console.warn("No se encontraron 'Pases' en los datos del usuario.");
+    }
+
     console.log(`Bienvenido, ${userData.nombre}`);
     startCountdown();
     startMusic();
@@ -174,12 +193,41 @@ document.querySelectorAll('.faq-question').forEach(button => {
 });
 
 // 6. Copy to clipboard
-function copyText(elementId) {
+function copyText(elementId, btn) {
     const text = document.getElementById(elementId).innerText;
     navigator.clipboard.writeText(text).then(() => {
-        alert('Copiado: ' + text);
+        const originalContent = btn.innerHTML;
+        btn.innerHTML = '<i class="fas fa-check"></i> ¡Copiado!';
+        btn.style.borderColor = '#27ae60';
+        btn.style.color = '#27ae60';
+
+        setTimeout(() => {
+            btn.innerHTML = originalContent;
+            btn.style.borderColor = '';
+            btn.style.color = '';
+        }, 2000);
     });
 }
+
+// 8. Custom Form Validation Messages in Spanish
+document.addEventListener("DOMContentLoaded", () => {
+    const inputs = document.querySelectorAll('input, textarea');
+    inputs.forEach(input => {
+        input.oninvalid = function (e) {
+            e.target.setCustomValidity("");
+            if (!e.target.validity.valid) {
+                if (e.target.type === 'radio') {
+                    e.target.setCustomValidity("Por favor, selecciona una opción.");
+                } else {
+                    e.target.setCustomValidity("Por favor, completa este campo.");
+                }
+            }
+        };
+        input.oninput = function (e) {
+            e.target.setCustomValidity("");
+        };
+    });
+});
 
 // 7. Scroll Animations (Reveal on Scroll)
 const revealElements = document.querySelectorAll('.reveal');

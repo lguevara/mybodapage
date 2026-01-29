@@ -1,0 +1,28 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .logo-text {
+        font-family: 'Playfair Display', serif;
+        fill: white;
+        text-anchor: middle;
+      }
+      .letter-j {
+        font-size: 110px;
+        font-style: italic;
+      }
+      .letter-g {
+        font-size: 95px;
+      }
+      .line {
+        stroke: white;
+        stroke-width: 0.8;
+        opacity: 0.6;
+      }
+    </style>
+  </defs>
+  <!-- Elegantly joined J and G without '&' or 'y' -->
+  <text x="85" y="120" class="logo-text letter-j">J</text>
+  <text x="120" y="115" class="logo-text letter-g">G</text>
+  
+  <line x1="60" y1="135" x2="140" y2="135" class="line" />
+</svg>

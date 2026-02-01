@@ -82,7 +82,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('recursos/fondo.jpg') no-repeat center center/cover;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('recursos/fondo.jpeg') no-repeat center center/cover;
     z-index: -1;
 }
 
@@ -198,7 +198,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('recursos/fondo.jpg') no-repeat center center/cover;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('recursos/fondo.jpeg') no-repeat center center/cover;
     z-index: 0;
 }
 
@@ -347,7 +347,7 @@ body {
 /* --- Event Details (Itinerary Style like Image 2) --- */
 #details {
     padding: 120px 0;
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('recursos/fondo_detalles.jpg') no-repeat center center/cover;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('recursos/fondo_detalles.jpeg') no-repeat center center/cover;
     color: white;
 }
 

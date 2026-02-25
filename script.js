@@ -7,6 +7,19 @@
 const APP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyLR1z5TJe_LN1y3VlL8l3tDRPSOs7Et1Jq2gxf7f53-fHLilKWVi7CjAp_s23mjpDU/exec'; // Updated by user later
 const WEDDING_DATE = new Date('April 20, 2026 15:00:00').getTime();
 
+// 0. UTILS
+function parseFecha(str) {
+    if (!str) return null;
+    if (str instanceof Date) return str;
+
+    // Si viene como string de Google Sheets DD/MM/YYYY
+    const parts = str.toString().split('/');
+    if (parts.length === 3) {
+        return new Date(parts[2], parts[1] - 1, parts[0]);
+    }
+    return new Date(str);
+}
+
 // Elements
 const accessGate = document.getElementById('access-gate');
 const mainContent = document.getElementById('main-content');
@@ -94,26 +107,29 @@ function showMainContent(userData) {
     // 1. Verificar Fecha Límite de Confirmación
     if (userData.fechaLimite) {
         const now = new Date();
-        const deadline = new Date(userData.fechaLimite);
+        const deadline = parseFecha(userData.fechaLimite);
 
         // Si la fecha límite ya pasó
-        if (now > deadline) {
+        if (deadline && now > deadline) {
             const rsvpSection = document.getElementById('rsvp');
-            const rsvpContainer = rsvpSection.querySelector('.container');
+            if (rsvpSection) {
+                const rsvpContainer = rsvpSection.querySelector('.container');
 
-            // Reemplazamos el formulario con el mensaje de "fuera de fecha"
-            rsvpContainer.innerHTML = `
-                <div class="success-content" style="text-align: center; padding: 40px 0;">
-                    <i class="fas fa-clock" style="font-size: 50px; color: #e74c3c; display:block; margin: 0 auto 20px;"></i>
-                    <h2 style="color: var(--text-color); margin-bottom: 20px;">CONFIRMACIÓN CERRADA</h2>
-                    <p style="font-size: 1.2rem; line-height: 1.6; color: #444;">
-                        Ya no es posible confirmar su asistencia. <br>
-                        Ya está fuera de fecha. <br>
-                        Lamentamos que no pueda acompañarnos.
-                    </p>
-                </div>
-            `;
-            console.log("Fecha límite superada:", deadline);
+                // Reemplazamos el formulario con el mensaje de "fuera de fecha"
+                rsvpContainer.innerHTML = `
+                    <div class="success-content" style="text-align: center; padding: 40px 0;">
+                        <i class="fas fa-clock" style="font-size: 50px; color: #e74c3c; display:block; margin: 0 auto 20px;"></i>
+                        <h2 style="color: var(--text-color); margin-bottom: 20px;">CONFIRMACIÓN CERRADA</h2>
+                        <p style="font-size: 1.2rem; line-height: 1.6; color: #444;">
+                            Ya no es posible confirmar su asistencia. <br>
+                            Ya está fuera de fecha. <br>
+                            Lamentamos que no pueda acompañarnos.
+                        </p>
+                    </div>
+                `;
+                console.log("Fecha límite superada:", deadline);
+                // No retornamos para permitir ver el resto de la invitación
+            }
         }
     }
 
@@ -146,9 +162,23 @@ function showMainContent(userData) {
 }
 
 // Check if already logged in
-const savedUser = localStorage.getItem('wedding_user');
-if (savedUser) {
-    showMainContent(JSON.parse(savedUser));
+const savedUserRaw = localStorage.getItem('wedding_user');
+if (savedUserRaw) {
+    const savedUser = JSON.parse(savedUserRaw);
+    showMainContent(savedUser);
+
+    // Si el usuario guardado no tiene fechaLimite (sesión antigua), refrescamos del servidor
+    if (!savedUser.fechaLimite) {
+        console.log("Refrescando sesión antigua para obtener fecha límite...");
+        fetch(`${APP_SCRIPT_URL}?usuario=${encodeURIComponent(savedUser.usuario)}`)
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    localStorage.setItem('wedding_user', JSON.stringify(data));
+                    showMainContent(data);
+                }
+            }).catch(e => console.error("Error refrescando sesión:", e));
+    }
 }
 
 

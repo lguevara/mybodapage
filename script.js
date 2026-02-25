@@ -199,20 +199,61 @@ function showMainContent(userData) {
 const savedUserRaw = localStorage.getItem('wedding_user');
 if (savedUserRaw) {
     const savedUser = JSON.parse(savedUserRaw);
+    // 1. Mostrar contenido inmediatamente con datos en caché para no hacer esperar al usuario
     showMainContent(savedUser);
 
-    // Si el usuario guardado no tiene fechaLimite (sesión antigua), refrescamos del servidor
-    if (!savedUser.fechaLimite) {
-        console.log("Refrescando sesión antigua para obtener fecha límite...");
-        fetch(`${APP_SCRIPT_URL}?usuario=${encodeURIComponent(savedUser.usuario)}`)
-            .then(res => res.json())
-            .then(data => {
-                if (data.success) {
-                    localStorage.setItem('wedding_user', JSON.stringify(data));
-                    showMainContent(data);
+    // 2. SIEMPRE refrescar en segundo plano para traer cualquier cambio de Google Sheets
+    // (Actualización de pases, cambios de fecha límite, etc.)
+    console.log("Sincronizando datos con el servidor en segundo plano...");
+    fetch(`${APP_SCRIPT_URL}?usuario=${encodeURIComponent(savedUser.usuario)}`)
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
+                // Si la data re-cargada es diferente, actualizamos silenciosamente
+                localStorage.setItem('wedding_user', JSON.stringify(data));
+
+                // Extraer el contenedor para ver si debemos cerrar la confirmación tras la recarga
+                const now = new Date();
+                const deadline = parseFecha(data.fechaLimite);
+                if (deadline && now > deadline) {
+                    const rsvpSection = document.getElementById('rsvp');
+                    if (rsvpSection) {
+                        const formToHide = document.getElementById('rsvp-form');
+                        if (formToHide) {
+                            const closeMessage = document.createElement('div');
+                            closeMessage.innerHTML = `
+                                <div class="success-content" style="text-align: center; padding: 40px 0;">
+                                    <i class="fas fa-clock" style="font-size: 50px; color: #e74c3c; display:block; margin: 0 auto 20px;"></i>
+                                    <h2 style="color: var(--text-color); margin-bottom: 20px;">CONFIRMACIÓN CERRADA</h2>
+                                    <p style="font-size: 1.2rem; line-height: 1.6; color: #444;">
+                                        Ya no es posible confirmar su asistencia. <br>
+                                        Ya está fuera de fecha. <br>
+                                        Lamentamos que no pueda acompañarnos.
+                                    </p>
+                                </div>
+                            `;
+                            formToHide.parentNode.replaceChild(closeMessage, formToHide);
+                            const previousTexts = rsvpSection.querySelectorAll('p, h2');
+                            previousTexts.forEach(txt => {
+                                if (!txt.closest('#passes-container') && txt.innerText.includes('CONFIRMA TU')) {
+                                    txt.style.display = 'none';
+                                }
+                                if (!txt.closest('#passes-container') && txt.innerText.includes('hasta el')) {
+                                    txt.style.display = 'none';
+                                }
+                            });
+                        }
+                    }
+                } else if (deadline && now <= deadline) {
+                    // Si misteriosamente habían quedado fuera de fecha antes, y ahora les dieron más plazo,
+                    // forzamos a recargar toda la página si el form ya no estaba
+                    const formToHide = document.getElementById('rsvp-form');
+                    if (!formToHide && document.querySelector('.success-content h2') && document.querySelector('.success-content h2').innerText === 'CONFIRMACIÓN CERRADA') {
+                        location.reload();
+                    }
                 }
-            }).catch(e => console.error("Error refrescando sesión:", e));
-    }
+            }
+        }).catch(e => console.error("Error refrescando sesión:", e));
 }
 
 

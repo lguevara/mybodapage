@@ -266,6 +266,12 @@ if (savedUserRaw) {
                     const formToHide = document.getElementById('rsvp-form');
                     if (!formToHide && document.querySelector('.success-content h2') && document.querySelector('.success-content h2').innerText === 'CONFIRMACIÓN CERRADA') {
                         location.reload();
+                    } else {
+                        // Actualizamos el texto de la fecha asincrónicamente si han cambiado cosas por detrás
+                        const fechaTextoEl = document.getElementById('fecha-limite-texto');
+                        if (fechaTextoEl) {
+                            fechaTextoEl.innerText = formatFechaEspanol(deadline);
+                        }
                     }
                 }
             }

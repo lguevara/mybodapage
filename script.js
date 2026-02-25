@@ -91,6 +91,32 @@ function showMainContent(userData) {
     accessGate.classList.add('hidden');
     mainContent.classList.remove('hidden');
 
+    // 1. Verificar Fecha Límite de Confirmación
+    if (userData.fechaLimite) {
+        const now = new Date();
+        const deadline = new Date(userData.fechaLimite);
+
+        // Si la fecha límite ya pasó
+        if (now > deadline) {
+            const rsvpSection = document.getElementById('rsvp');
+            const rsvpContainer = rsvpSection.querySelector('.container');
+
+            // Reemplazamos el formulario con el mensaje de "fuera de fecha"
+            rsvpContainer.innerHTML = `
+                <div class="success-content" style="text-align: center; padding: 40px 0;">
+                    <i class="fas fa-clock" style="font-size: 50px; color: #e74c3c; display:block; margin: 0 auto 20px;"></i>
+                    <h2 style="color: var(--text-color); margin-bottom: 20px;">CONFIRMACIÓN CERRADA</h2>
+                    <p style="font-size: 1.2rem; line-height: 1.6; color: #444;">
+                        Ya no es posible confirmar su asistencia. <br>
+                        Ya está fuera de fecha. <br>
+                        Lamentamos que no pueda acompañarnos.
+                    </p>
+                </div>
+            `;
+            console.log("Fecha límite superada:", deadline);
+        }
+    }
+
     // Display dynamic passes information
     const passesContainer = document.getElementById('passes-container');
     const numPasesSpan = document.getElementById('num-pases');

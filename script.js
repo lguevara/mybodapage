@@ -10,14 +10,27 @@ const WEDDING_DATE = new Date('April 20, 2026 15:00:00').getTime();
 // 0. UTILS
 function parseFecha(str) {
     if (!str) return null;
-    if (str instanceof Date) return str;
+    if (str instanceof Date) {
+        // Fijar el final del día para la fecha límite
+        const d = new Date(str);
+        d.setHours(23, 59, 59, 999);
+        return d;
+    }
 
     // Si viene como string de Google Sheets DD/MM/YYYY
     const parts = str.toString().split('/');
     if (parts.length === 3) {
-        return new Date(parts[2], parts[1] - 1, parts[0]);
+        // Al crear la fecha, le asignamos las 23:59:59
+        return new Date(parts[2], parts[1] - 1, parts[0], 23, 59, 59, 999);
     }
-    return new Date(str);
+
+    // Si es otro formato
+    const d = new Date(str);
+    if (!isNaN(d.getTime())) {
+        d.setHours(23, 59, 59, 999);
+        return d;
+    }
+    return null;
 }
 
 // Elements

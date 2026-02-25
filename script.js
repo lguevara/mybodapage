@@ -113,22 +113,43 @@ function showMainContent(userData) {
         if (deadline && now > deadline) {
             const rsvpSection = document.getElementById('rsvp');
             if (rsvpSection) {
-                const rsvpContainer = rsvpSection.querySelector('.container');
+                // Selecionamos SOLO el formulario completo (y su container asociado si es necesario) 
+                // para reemplzarlo sin borrar todo el "main-content"
+                const formToHide = document.getElementById('rsvp-form');
+                const pasesContainer = document.getElementById('passes-container');
 
-                // Reemplazamos el formulario con el mensaje de "fuera de fecha"
-                rsvpContainer.innerHTML = `
-                    <div class="success-content" style="text-align: center; padding: 40px 0;">
-                        <i class="fas fa-clock" style="font-size: 50px; color: #e74c3c; display:block; margin: 0 auto 20px;"></i>
-                        <h2 style="color: var(--text-color); margin-bottom: 20px;">CONFIRMACIÓN CERRADA</h2>
-                        <p style="font-size: 1.2rem; line-height: 1.6; color: #444;">
-                            Ya no es posible confirmar su asistencia. <br>
-                            Ya está fuera de fecha. <br>
-                            Lamentamos que no pueda acompañarnos.
-                        </p>
-                    </div>
-                `;
+                if (formToHide) {
+                    // Creamos el mensaje de cierre
+                    const closeMessage = document.createElement('div');
+                    closeMessage.innerHTML = `
+                        <div class="success-content" style="text-align: center; padding: 40px 0;">
+                            <i class="fas fa-clock" style="font-size: 50px; color: #e74c3c; display:block; margin: 0 auto 20px;"></i>
+                            <h2 style="color: var(--text-color); margin-bottom: 20px;">CONFIRMACIÓN CERRADA</h2>
+                            <p style="font-size: 1.2rem; line-height: 1.6; color: #444;">
+                                Ya no es posible confirmar su asistencia. <br>
+                                Ya está fuera de fecha. <br>
+                                Lamentamos que no pueda acompañarnos.
+                            </p>
+                        </div>
+                    `;
+                    // Reemplazamos el formulario por el mensaje, SIN borrar el contenido de passes (si existiera)
+                    formToHide.parentNode.replaceChild(closeMessage, formToHide);
+
+                    // Ocultamos el título "¿NOS ACOMPAÑARÁS?" u otros textos de ayuda superiores al form si existen.
+                    // Buscamos los 'p' o 'h2' específicos del RSVP que ya no tienen sentido
+                    const previousTexts = rsvpSection.querySelectorAll('p, h2');
+                    previousTexts.forEach(txt => {
+                        // Oculta textos genéricos de invitación pero deja vivo el pasesContainer
+                        if (!txt.closest('#passes-container') && txt.innerText.includes('CONFIRMA TU')) {
+                            txt.style.display = 'none';
+                        }
+                        if (!txt.closest('#passes-container') && txt.innerText.includes('hasta el')) {
+                            txt.style.display = 'none';
+                        }
+                    });
+                }
+
                 console.log("Fecha límite superada:", deadline);
-                // No retornamos para permitir ver el resto de la invitación
             }
         }
     }

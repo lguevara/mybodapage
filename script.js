@@ -33,6 +33,16 @@ function parseFecha(str) {
     return null;
 }
 
+function formatFechaEspanol(dateObj) {
+    if (!dateObj) return '01 de marzo'; // Fallback
+    const meses = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
+    const dia = dateObj.getDate().toString().padStart(2, '0');
+    const mes = meses[dateObj.getMonth()];
+    return `${dia} de ${mes}`;
+}
+
+
+
 // Elements
 const accessGate = document.getElementById('access-gate');
 const mainContent = document.getElementById('main-content');
@@ -163,6 +173,12 @@ function showMainContent(userData) {
                 }
 
                 console.log("Fecha límite superada:", deadline);
+            }
+        } else if (deadline && now <= deadline) {
+            // Aún está a tiempo para confirmar, actualizamos el texto visual
+            const fechaTextoEl = document.getElementById('fecha-limite-texto');
+            if (fechaTextoEl) {
+                fechaTextoEl.innerText = formatFechaEspanol(deadline);
             }
         }
     }
